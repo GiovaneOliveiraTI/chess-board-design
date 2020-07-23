@@ -1,8 +1,12 @@
 package application;
 
+import boardGame.Posicao;
+
 public class ExecutaTabuleiro {
     public static void main (String[] args) {
 
-        System.out.println("Hello World!");
+        Posicao posicao = new Posicao(3,4);
+
+        System.out.println(posicao);
     }
 }
