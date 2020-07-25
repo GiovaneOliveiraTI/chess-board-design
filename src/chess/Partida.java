@@ -25,9 +25,9 @@ public class Partida {
     }
 
     private void iniciarPartida() {
-        tabuleiro.movimentarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 2));
-        tabuleiro.movimentarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0, 4));
-        tabuleiro.movimentarPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(7, 4));
+        tabuleiro.movimentarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(10, 2));
+        tabuleiro.movimentarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(1, 1));
+        tabuleiro.movimentarPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(3, 1));
     }
 }
 
