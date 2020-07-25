@@ -1,7 +1,5 @@
 package application;
 
-import boardGame.Posicao;
-import boardGame.Tabuleiro;
 import chess.Partida;
 
 public class ExecutaTabuleiro {
