@@ -22,10 +22,13 @@ public class ExecutaTabuleiro {
                 System.out.print("Entre com a posição de origem: ");
                 PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);
 
+                boolean[][] movimentosPossiveis = partida.MovimentosPosiveis(origem);
+                UI.limparTela();
+                UI.imprimeTabuleiro(partida.getpecas(), movimentosPossiveis);
+
                 System.out.println();
                 System.out.print("Entre com a posição de destino: ");
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
-
                 PecaXadrez capturaPeca = partida.moverPecasXadrez(origem, destino);
             } catch (XadrezException e) {
                 System.out.print(e.getMessage());
