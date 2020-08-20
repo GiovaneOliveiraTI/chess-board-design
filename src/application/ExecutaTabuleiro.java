@@ -25,7 +25,6 @@ public class ExecutaTabuleiro {
                 boolean[][] movimentosPossiveis = partida.MovimentosPosiveis(origem);
                 UI.limparTela();
                 UI.imprimeTabuleiro(partida.getpecas(), movimentosPossiveis);
-
                 System.out.println();
                 System.out.print("Entre com a posição de destino: ");
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
