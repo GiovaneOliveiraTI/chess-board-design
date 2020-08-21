@@ -8,11 +8,31 @@ import chess.pieces.Torre;
 
 public class Partida {
 
+    private int turno;
+    private Cor jogadorAtual;
     private Tabuleiro tabuleiro;
 
     public Partida() {
         tabuleiro = new Tabuleiro(8, 8);
+        turno = 1;
+        jogadorAtual = Cor.BRANCO;
         iniciarPartida();
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+
+    public Cor getJogadorAtual() {
+        return jogadorAtual;
+    }
+
+    public void setJogadorAtual(Cor jogadorAtual) {
+        this.jogadorAtual = jogadorAtual;
     }
 
     public PecaXadrez[][] getpecas() {
@@ -35,13 +55,14 @@ public class Partida {
         Posicao origem = posicaoOrigem.posicionar();
         Posicao destino = posicaoDestino.posicionar();
         validarPosicaoOrigem(origem);
-        validarPosicaoDestino(origem,destino);
+        validarPosicaoDestino(origem, destino);
         Peca pecaCapturada = fazerMovimento(origem, destino);
+        proximoTurno();
         return (PecaXadrez) pecaCapturada;
     }
 
     private void validarPosicaoDestino(Posicao origem, Posicao destino) {
-        if(!tabuleiro.peca(origem).movimentoPossivel(destino)){
+        if (!tabuleiro.peca(origem).movimentoPossivel(destino)) {
             throw new XadrezException("A peça escolhida não pode se mover para posição de destino. ");
         }
 
@@ -58,9 +79,17 @@ public class Partida {
         if (!tabuleiro.existePeca(posicao)) {
             throw new XadrezException("Não existe peça na posição de origem.");
         }
-        if(!tabuleiro.peca(posicao).verificarMovimentoPossivel()) {
+        if (jogadorAtual != ((PecaXadrez) tabuleiro.peca(posicao)).getCor()) {
+            throw new XadrezException("A Peça escolhida não é sua.");
+        }
+        if (!tabuleiro.peca(posicao).verificarMovimentoPossivel()) {
             throw new XadrezException("Não exite movimentos possíveis para a peça escolhida.");
         }
+    }
+
+    private void proximoTurno() {
+        turno++;
+        jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
     }
 
     private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca) {

@@ -17,7 +17,7 @@ public class ExecutaTabuleiro {
         while (true) {
             try {
                 UI.limparTela();
-                UI.imprimeTabuleiro(partida.getpecas());
+                UI.imprimirPartida(partida);
                 System.out.println();
                 System.out.print("Entre com a posição de origem: ");
                 PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);
