@@ -6,12 +6,17 @@ import boardGame.Tabuleiro;
 import chess.pieces.Rei;
 import chess.pieces.Torre;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Partida {
 
     private int turno;
     private Cor jogadorAtual;
     private Tabuleiro tabuleiro;
 
+    private List<Peca> pecasTabuleiro = new ArrayList<>();
+    private List<Peca> pecasCapturadas = new ArrayList<>();
     public Partida() {
         tabuleiro = new Tabuleiro(8, 8);
         turno = 1;
@@ -72,6 +77,10 @@ public class Partida {
         Peca p = tabuleiro.removerPeca(origem);
         Peca pecaCapturada = tabuleiro.removerPeca(destino);
         tabuleiro.movimentarPeca(p, destino);
+        if(pecaCapturada != null) {
+            pecasTabuleiro.remove(pecasCapturadas);
+            pecasCapturadas.add(pecaCapturada);
+        }
         return pecaCapturada;
     }
 
@@ -94,6 +103,7 @@ public class Partida {
 
     private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
         tabuleiro.movimentarPeca(peca, new PosicaoXadrez(coluna, linha).posicionar());
+        pecasTabuleiro.add(peca);
 
     }
 
