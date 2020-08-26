@@ -52,10 +52,10 @@ public class Torre extends PecaXadrez {
         }
 
         //verificação de movimentação de peças para baixo
-        p.setValues(posicao.getLinha(), posicao.getColuna() + 1);
+        p.setValues(posicao.getLinha() + 1, posicao.getColuna());
         while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().existePeca(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
-            p.setColuna(p.getColuna() + 1);
+            p.setLinha(p.getLinha() + 1);
             if (getTabuleiro().posicaoExistente(p) && existePecaOponente(p)) {
                 mat[p.getLinha()][p.getColuna()] = true;
             }

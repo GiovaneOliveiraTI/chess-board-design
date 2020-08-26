@@ -36,10 +36,7 @@ public class ExecutaTabuleiro {
                 if (capturaPeca != null) {
                     capturadas.add(capturaPeca);
                 }
-            } catch (XadrezException e) {
-                System.out.print(e.getMessage());
-                sc.nextLine();
-            } catch (InputMismatchException e) {
+            } catch (XadrezException | InputMismatchException e) {
                 System.out.print(e.getMessage());
                 sc.nextLine();
             }
