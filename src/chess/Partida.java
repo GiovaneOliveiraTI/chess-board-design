@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toCollection;
-
 public class Partida {
 
     private int turno;
@@ -95,7 +93,7 @@ public class Partida {
         Peca pecaCapturada = tabuleiro.removerPeca(destino);
         tabuleiro.movimentarPeca(p, destino);
         if (pecaCapturada != null) {
-            pecasTabuleiro.remove(pecasCapturadas);
+            pecasTabuleiro.remove(pecaCapturada);
             pecasCapturadas.add(pecaCapturada);
         }
         return pecaCapturada;
@@ -134,10 +132,10 @@ public class Partida {
     }
 
     private PecaXadrez rei(Cor cor) {
-        List<Peca> list = pecasTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == cor).collect(Collectors.toList());
+        List<Peca> list = pecasTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == cor).collect(Collectors.toList());
         for (Peca p : list) {
             if (p instanceof Rei) {
-                return (PecaXadrez) p;
+                return (PecaXadrez)p;
             }
         }
         throw new IllegalStateException("Não exite " + cor + " Rei no tabuleiro.");
@@ -145,7 +143,7 @@ public class Partida {
 
     private boolean testeCheck(Cor cor) {
         Posicao posicaoRei = rei(cor).getPosicaoXadrez().posicionar();
-        List<Peca> pecasOponente =  pecasTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == oponente(cor)).collect(Collectors.toList()) ;
+        List<Peca> pecasOponente = pecasTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == oponente(cor)).collect(Collectors.toList());
         for (Peca p : pecasOponente) {
             boolean[][] mat = p.movimentosPossiveis();
             if(mat[posicaoRei.getLinha()][ posicaoRei.getColuna()]) {
